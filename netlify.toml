@@ -1,3 +1,3 @@
 [build]
-    publish="dist/",
+    publish="dist/"\n
     CI  = “npm run build”
