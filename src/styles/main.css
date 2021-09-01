@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'Ubuntu';
-	src: url("../assets//fonts//ubuntu-300.woff") format('woff'),
-			url("../assets/fonts/ubuntu-300.woff2") format('woff2');
+	src: url(../assets//fonts//ubuntu-300.woff) format('woff'),
+			url(../assets/fonts/ubuntu-300.woff2) format('woff2');
 	font-weight: 300;
 	font-size: normal;
 }

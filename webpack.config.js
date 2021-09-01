@@ -42,7 +42,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"],
       },
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(woff|woff2)/,
         use: {
           loader: "url-loader",
           options: {
@@ -69,7 +69,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src", "assets/images"),
+          from: "src/assets/images",
           to: "assets/images",
         },
       ],
