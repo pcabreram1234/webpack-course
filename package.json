@@ -8,7 +8,9 @@
     "node":"node ./scripts/create-env.js",
     "build": "webpack --mode production --config webpack.config.js",
     "dev": "webpack --config webpack.config.dev.js",
-    "build:watch": "webpack --watch --config webpack.config.dev.js"
+    "build:watch": "webpack --watch --config webpack.config.dev.js",
+    "start":"npm run node && npm run build"
+    
   },
   "repository": {
     "type": "git",
