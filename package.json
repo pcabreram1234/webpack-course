@@ -5,12 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "node":"node ./scripts/create-env.js",
     "build": "webpack --mode production --config webpack.config.js",
     "dev": "webpack --config webpack.config.dev.js",
-    "build:watch": "webpack --watch --config webpack.config.dev.js",
-    "start":"npm run node && npm run build"
-    
+    "build:watch": "webpack --watch --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
