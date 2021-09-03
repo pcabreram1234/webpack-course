@@ -23,7 +23,6 @@ module.exports = {
       "@utils": path.resolve(__dirname, "src/utils/"),
     },
   },
-  watch: true,
   module: {
     rules: [
       {
