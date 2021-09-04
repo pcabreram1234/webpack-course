@@ -5,13 +5,24 @@ const CopyPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const DotEnv = require("dotenv-webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: path.resolve(__dirname, "src/index.js"),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
     assetModuleFilename: "assets/images/[hash][ext][query]",
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "src/styles"),
+      publicPath: "./styles",
+    },
+    historyApiFallback: true,
+    compress: true,
+    port: 3005,
   },
   mode: "development",
   resolve: {
@@ -23,7 +34,6 @@ module.exports = {
       "@utils": path.resolve(__dirname, "src/utils/"),
     },
   },
-  watch: true,
   module: {
     rules: [
       {
@@ -42,7 +52,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"],
       },
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(woff|woff2)/,
         use: {
           loader: "url-loader",
           options: {
@@ -64,16 +74,22 @@ module.exports = {
       filename: "./index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: "assets/styles/[name].[contenthash].css",
+      filename: "assets/[name].[contenthash].css",
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src", "assets/images"),
+          from: "src/assets/images",
           to: "assets/images",
         },
       ],
     }),
     new DotEnv(),
+    new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+  },
 };
